@@ -1,0 +1,1 @@
+menor x y = min x y
