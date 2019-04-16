@@ -1,4 +1,4 @@
--- 02 menor entre x y
+-- 01 menor entre x y
 menord2::Int -> Int -> Int
 menord2 x y = min x y
 
@@ -46,3 +46,48 @@ frequencia x (u:us) | x==u = 1 + frequencia (x) (us)
 unica::Int -> [Int] -> Bool
 unica (x) (us) = if (frequencia x us) == 1
                 then True else False
+
+-- 11 maioresQue
+maioresQue::Int -> [Int] -> [Int]
+maioresQue x us = [u | u<-us, u > x]
+
+-- 12 concat
+concatI::[Int] -> [Int] -> [Int]
+concatI [] [] = []
+concatI as bs = as++bs
+
+-- 13 calda
+calda::[Int] -> [Int]
+calda us = tail us
+
+-- 14 corpo
+corpo::[Int] -> [Int]
+corpo us = init us
+
+-- 15 unique
+unique::[Int] -> [Int]
+unique [] = []
+unique [x] = [x]
+unique (y : ys) = if y `elem` ys 
+    then unique ys else y : unique ys
+
+-- 16 menores
+
+-- 17 alter
+alter::Int -> [Int]
+alter 0 = [0]
+alter a = alter(c - 1)++ [c , (-c)]
+    where c = a
+
+-- 18 reverso
+reverseMy::[Int] -> [Int]
+reverseMy [] = []
+reverseMy [a] = [a]
+reverseMy xs = (last xs) : reverseMy (init xs)
+
+-- 19 divide
+divide::[Int] -> Int -> ([Int],[Int])
+divide us x = (take x us, drop x us)
+
+-- 20 intercal
+intercal as bs = unique (concatI (as) (bs))
