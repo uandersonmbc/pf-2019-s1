@@ -1,31 +1,37 @@
 -- 02 menor entre x y
+menord2::Int -> Int -> Int
 menord2 x y = min x y
 
 -- 02 menor entre x y z
+menord3::Int -> Int -> Int -> Int
 menord3 x y z = min z (min x y)
 
 -- 03 fatorial
+fat::Int -> Int
 fat x = product [1 .. x]
 
 -- 04 fibonacci
--- INPUT: Inteiro positivo n
--- OUTPUT: n-ésimo termo da sequência de Fibonacci (iniciando em com 0 e 1)
+fib::Int -> Int
 fib 1 = 0 -- condição de parada para a recursão
 fib 2 = 1 -- condição de parada para a recursão
 fib x = fib (x - 1) + fib (x - 2)
 
 -- 05 elemento
+elemento::Int -> [Int] -> Int
 elemento x xs = xs !! x
 
 -- 06 pertence 
+pertence::Int -> [Int] -> Bool
 pertence x xs = x `elem` xs
 
 -- 07 total
+total::[Int] -> Int
 total [] = 0 -- condição de parada para a recursão
 total [x] = 1 -- condição de parada para a recursão
 total xs = total (tail xs) + 1
 
 -- 08 maior
+maior::[Int] -> Int
 maior [x] = x -- condição de parada para a recursão
 maior (x:y:resto)   | x > y = maior (x: resto)
                     | otherwise = maior (y: resto)
