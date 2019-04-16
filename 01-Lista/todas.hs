@@ -92,3 +92,5 @@ divide us x = (take x us, drop x us)
 -- 20 intercal
 intercal::[Int] -> [Int] -> [Int]
 intercal as bs = unique (concatI (as) (bs))
+
+

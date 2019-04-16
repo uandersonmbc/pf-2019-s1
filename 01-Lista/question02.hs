@@ -1,1 +1,0 @@
-menor x y z = min z (min x y)
