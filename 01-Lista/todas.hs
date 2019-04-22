@@ -97,3 +97,16 @@ intercal [] b = b
 intercal (a:as) (bs) = a:intercal (bs) (as)
 
 -- 21 uniao
+uniao::[Int] -> [Int] -> [Int]
+uniao as bs = unique (concatI as bs)
+
+-- 22 intersec
+intersec::[Int] -> [Int] -> [Int]
+intersec [] _ = []
+intersec [a] _ = [a]
+intersec (a:as) bs = if a `elem` bs 
+    then a : intersec (as) (bs) else intersec (as) (bs)
+
+-- 23 sequencia
+sequencia::Int -> Int -> [Int]
+sequencia n m = [m,(m+1)..(m+n-1)]
