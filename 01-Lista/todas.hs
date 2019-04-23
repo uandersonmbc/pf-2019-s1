@@ -86,7 +86,8 @@ reverseMy [a] = [a]
 reverseMy xs = (last xs) : reverseMy (init xs)
 
 -- 19 divide
-divide::[Int] -> Int -> ([Int],[Int])
+divide::[Int] ->
+     Int -> ([Int],[Int])
 divide us x = (take x us, drop x us)
 
 -- 20 intercal
@@ -110,3 +111,23 @@ intersec (a:as) bs = if a `elem` bs
 -- 23 sequencia
 sequencia::Int -> Int -> [Int]
 sequencia n m = [m,(m+1)..(m+n-1)]
+
+-- 24 inserir
+inserir::Int -> [Int] -> [Int]
+inserir _ [] = []
+inserir _ [a] = [a]
+inserir x us = (a ++ [x] ++ b) 
+    where   a = takeWhile ( <= x) us
+            b = tail $ dropWhile (>=x) us
+
+-- 25 isSorted
+isSorted::[Int] -> Bool
+isSorted [] = True
+isSorted [a] = True
+isSorted (u:y:us)   | u<=y = isSorted (y:us)
+                    | otherwise = False
+
+-- 27 rotEsq
+rotEsq::Int -> [Char] -> [Char]
+rotEsq n (u:us) | n <= 0 = rotEsq (n-1) (us++[u])
+                | otherwise = us

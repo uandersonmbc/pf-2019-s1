@@ -1,5 +1,8 @@
--- unique xs
-unique [] = []
-unique [x] = [x]
-unique (y : ys) = if y `elem` ys 
-    then unique ys else y : unique ys
+-- quest 2
+
+sort :: [Int] -> [Int] 
+sort [] = []
+sort [a] = [a]
+sort xs = sort (a) ++ [x] 
+    where x = maximum xs
+          a = [ y | y<-xs, y/=x]
