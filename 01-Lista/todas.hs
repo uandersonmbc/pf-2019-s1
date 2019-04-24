@@ -129,5 +129,13 @@ isSorted (u:y:us)   | u<=y = isSorted (y:us)
 
 -- 27 rotEsq
 rotEsq::Int -> [Char] -> [Char]
-rotEsq n (u:us) | n <= 0 = rotEsq (n-1) (us++[u])
+rotEsq n (u:us) | n > 0 = rotEsq (n-1) (us++[u])
+                | otherwise = [u]++us
+
+-- 28 rotDir
+rotDir::Int -> [Char] -> [Char]
+rotDir n (us)   | n > 0 = rotDir (n-1) ([(last us)] ++ (init us))
                 | otherwise = us
+
+-- 29 upper
+upper::[Char] -> [Char]
