@@ -1,10 +1,12 @@
 -- 01 menor entre x y
 menord2::Int -> Int -> Int
-menord2 x y = min x y
+menord2 x y = if x <= y then x else y
 
 -- 02 menor entre x y z
 menord3::Int -> Int -> Int -> Int
-menord3 x y z = min z (min x y)
+menord3 x y z   | x <= y = x
+                | y <= z = y
+                | otherwise = z
 
 -- 03 fatorial
 fat::Int -> Int
@@ -138,4 +140,19 @@ rotDir n (us)   | n > 0 = rotDir (n-1) ([(last us)] ++ (init us))
                 | otherwise = us
 
 -- 29 upper
-upper::[Char] -> [Char]
+indice :: Char -> Int -> [Char] -> Int
+indice _ _ [] = -1
+indice c n (p:l) | c == p = n
+                 | otherwise = (indice c (n+1) l)
+
+maiuscula :: Char -> Char
+maiuscula c = ['A'..'Z'] !! (indice c 0 ['a'..'z']) 
+
+upper :: [Char] -> [Char]
+upper s = [if a `elem` ['a'..'z'] then (maiuscula a) else a | a <- s]
+
+-- 30 titulo
+minuscula :: Char -> Char
+minuscula c = ['A'..'Z'] !! (indice c 0 ['a'..'z']) 
+
+-- titulo::[Char] -> [Char]
