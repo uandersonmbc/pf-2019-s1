@@ -242,5 +242,9 @@ perfeito n = (n `elem` [(e^2) | e <- [1..n], (e^2) `elem` [1..n]])
 -- 39 base
 base::Int -> Int -> [Char]
 base 0 _ = ""
-base n b = (base (div n b) (b)) ++ show (mod n b)
--- 16 8 4 2 1
+base n b = if (b == 2) then (base (div n b) (b)) ++ show (mod n b) else (base (div n b) (b))++(("0123456789ABCDEF" !! (mod n b)):"")
+
+-- 40 partes
+subconjuntos::[Int] -> Int -> [[Int]]
+partes::[Int] -> [[Int]]
+partes us = subconjuntos us []
