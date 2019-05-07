@@ -16,6 +16,11 @@ maiMinCompletas s op = if op == 'M' then
     [if a `elem` ['a'..'z'] then (maiuscula a) else a | a <- s]
     else [if a `elem` ['A'..'Z'] then (minuscula a) else a | a <- s]
 
+delete::Int -> [Int] -> [Int]
+delete _ [] = []
+delete n (x:xs) | x == n = xs
+                | otherwise = x : delete n xs
+
 -- Fim das funções complementaris
 
 -- 01 menor entre x y
@@ -181,3 +186,34 @@ capitalizado (s:ss) n f | n == 1 = capitalizado (maiMinCompletas (s:ss) 'm') (2)
                         | otherwise = capitalizado (ss) (0) (f++[s])
 titulo::[Char] -> [Char]
 titulo s = capitalizado s 1 ""
+
+-- 31 selec
+selec::[Char] -> [Int] -> [Char]
+selec us xs = [us !! x | x <- xs]
+
+-- 32 isPalind
+isPalind::[Char] -> Bool
+isPalind [] = True
+isPalind [u] = True
+isPalind (u:us) | u == last us = isPalind (init us)
+                | otherwise = False
+
+-- 33 primo
+
+-- 34 sdig
+sumdig::Int -> [Int] -> Int
+sumdig 0 f = sum f
+sumdig n f = sumdig (div n 10) ([mod n 10]++f)
+
+sdig::Int -> Int
+sdig n = sumdig n []
+
+-- 35 bubbleSort
+sort::[Int] -> [Int] -> [Int]
+sort [] f = f
+sort [a] f = [a]++f
+sort us f = sort (a) ([x]++f)
+    where x = maximum us
+          a = (delete x us)
+bubbleSort::[Int] -> [Int]
+bubbleSort us = sort us []
