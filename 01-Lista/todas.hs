@@ -113,8 +113,7 @@ reverseMy [a] = [a]
 reverseMy xs = (last xs) : reverseMy (init xs)
 
 -- 19 divide
-divide::[Int] ->
-     Int -> ([Int],[Int])
+divide::[Int] -> Int -> ([Int],[Int])
 divide us x = (take x us, drop x us)
 
 -- 20 intercal
@@ -231,3 +230,17 @@ com (u:us) f = com (dropWhile (==u) (u:us)) (x:f)
 
 compac::[Int] -> [[Int]]
 compac us = com (reverse us) []
+
+-- 37 splitints
+splitints::[Int] -> ([Int],[Int])
+splitints us = ([u | u <- us, mod u 2 /= 0],[u | u <- us, mod u 2 == 0])
+
+-- 38 perfeito
+perfeito :: Int -> Bool
+perfeito n = (n `elem` [(e^2) | e <- [1..n], (e^2) `elem` [1..n]])
+
+-- 39 base
+base::Int -> Int -> [Char]
+base 0 _ = ""
+base n b = (base (div n b) (b)) ++ show (mod n b)
+-- 16 8 4 2 1
