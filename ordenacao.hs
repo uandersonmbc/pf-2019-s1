@@ -1,3 +1,4 @@
+import Data.List (minimum, delete)
 -- Quick Sort
 quicksort::[Int] -> [Int]
 quicksort [] = []
@@ -18,10 +19,32 @@ bubbleSort us = sort us []
 
 -- Insertion Sort
 
-insert :: Int -> [Int] -> [Int]
-insert x [] = [x]
-insert x (y:ys) = if x < y 
-                    then x:y:ys else y : insert x ys
+insertion::Int -> [Int] -> [Int]
+insertion x [] = [x]
+insertion x (y:ys) = if x < y 
+                    then x:y:ys else y : insertion x ys
 insertionSort::[Int] -> [Int]
 insertionSort [] = []
-insertionSort (u:us) = insert u (insertionSort us)
+insertionSort (u:us) = insertion u (insertionSort us)
+
+-- Merge Sort
+merge::[Int] -> [Int] -> [Int]
+merge xs [] = xs
+merge [] ys = ys
+merge (x:xs) (y:ys) | x <= y    = x:merge xs (y:ys)
+                    | otherwise = y:merge (x:xs) ys
+
+mergeSort::[Int] -> [Int]
+mergeSort [] = []
+mergeSort [a] = [a]
+mergeSort xs = merge (mergeSort (firstHalf xs)) (mergeSort (secondHalf xs))
+
+firstHalf  xs = let { n = length xs } in take (div n 2) xs
+secondHalf xs = let { n = length xs } in drop (div n 2) xs
+
+-- Selection Sort
+
+selectionSort :: Ord t => [t] -> [t]
+selectionSort [] = []
+selectionSort xs = let { x = minimum xs } 
+           in  x : selectionSort (delete x xs)
