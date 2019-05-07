@@ -222,3 +222,12 @@ sort us f = sort (a) ([x]++f)
           a = (delete x us)
 bubbleSort::[Int] -> [Int]
 bubbleSort us = sort us []
+
+--36 compac
+com::[Int] -> [[Int]] -> [[Int]]
+com [] f = f
+com (u:us) f = com (dropWhile (==u) (u:us)) (x:f)
+    where x = if length (takeWhile (==u) (u:us)) > 1 then [length (takeWhile (==u) (u:us)), u] else [u]
+
+compac::[Int] -> [[Int]]
+compac us = com (reverse us) []
