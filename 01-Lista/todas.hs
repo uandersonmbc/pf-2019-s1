@@ -17,6 +17,7 @@ maiMinCompletas s op = if op == 'M' then
     else [if a `elem` ['A'..'Z'] then (minuscula a) else a | a <- s]
 
 -- Fim das funções complementaris
+
 -- 01 menor entre x y
 menord2::Int -> Int -> Int
 menord2 x y = if x <= y then x else y

@@ -1,4 +1,10 @@
-import Data.List (minimum, delete)
+-- Funções complementares
+delete::Int -> [Int] -> [Int]
+delete _ [] = []
+delete n (x:xs) | x == n = xs
+                | otherwise = x : delete n xs
+-- Fim das funções complementaris
+
 -- Quick Sort
 quicksort::[Int] -> [Int]
 quicksort [] = []
@@ -10,10 +16,9 @@ quicksort (x:xs) = quicksort small ++ (x : quicksort large)
 sort::[Int] -> [Int] -> [Int]
 sort [] f = f
 sort [a] f = [a]++f
-sort us f = sort (a ++ b) ([x]++f)
+sort us f = sort (a) ([x]++f)
     where x = maximum us
-          a = takeWhile (/=x) us
-          b = tail $ dropWhile (/=x) us 
+          a = (delete x us)
 bubbleSort::[Int] -> [Int]
 bubbleSort us = sort us []
 
@@ -43,8 +48,6 @@ firstHalf  xs = let { n = length xs } in take (div n 2) xs
 secondHalf xs = let { n = length xs } in drop (div n 2) xs
 
 -- Selection Sort
-
-selectionSort :: Ord t => [t] -> [t]
+selectionSort::[Int] -> [Int]
 selectionSort [] = []
-selectionSort xs = let { x = minimum xs } 
-           in  x : selectionSort (delete x xs)
+selectionSort xs = let { x = minimum xs } in  x : selectionSort (delete x xs)
