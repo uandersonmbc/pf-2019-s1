@@ -199,6 +199,11 @@ isPalind (u:us) | u == last us = isPalind (init us)
                 | otherwise = False
 
 -- 33 primo
+fatores::Int -> [Int]
+fatores n = [i | i<-[1..n], mod n i== 0]
+
+primo::Int -> Bool
+primo n = if (fatores n) == [1,n] then True else False
 
 -- 34 sdig
 sumdig::Int -> [Int] -> Int
