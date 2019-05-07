@@ -1,3 +1,22 @@
+-- Funções complementares
+indice::Char -> Int -> [Char] -> Int
+indice _ _ [] = -1
+indice c n (p:l) | c == p = n
+                 | otherwise = (indice c (n+1) l)
+
+
+maiuscula::Char -> Char
+maiuscula c = ['A'..'Z'] !! (indice c 0 ['a'..'z'])
+
+minuscula::Char -> Char
+minuscula c = ['a'..'z'] !! (indice c 0 ['A'..'Z']) 
+
+maiMinCompletas::[Char] -> Char -> [Char]
+maiMinCompletas s op = if op == 'M' then 
+    [if a `elem` ['a'..'z'] then (maiuscula a) else a | a <- s]
+    else [if a `elem` ['A'..'Z'] then (minuscula a) else a | a <- s]
+
+-- Fim das funções complementaris
 -- 01 menor entre x y
 menord2::Int -> Int -> Int
 menord2 x y = if x <= y then x else y
@@ -147,19 +166,17 @@ rotDir n (us)   | n > 0 = rotDir (n-1) ([(last us)] ++ (init us))
                 | otherwise = us
 
 -- 29 upper
-indice::Char -> Int -> [Char] -> Int
-indice _ _ [] = -1
-indice c n (p:l) | c == p = n
-                 | otherwise = (indice c (n+1) l)
-
-maiuscula::Char -> Char
-maiuscula c = ['A'..'Z'] !! (indice c 0 ['a'..'z']) 
-
+-- Essa questão usa as funcções complementares
 upper::[Char] -> [Char]
-upper s = [if a `elem` ['a'..'z'] then (maiuscula a) else a | a <- s]
+upper s = maiMinCompletas s 'M'
 
 -- 30 titulo
-minuscula::Char -> Char
-minuscula c = ['A'..'Z'] !! (indice c 0 ['a'..'z']) 
-
--- titulo::[Char] -> [Char]
+-- Essa questão usa as funcções complementares
+capitalizado::[Char] -> Int -> [Char] -> [Char]
+capitalizado [] _ f = f
+capitalizado (s:ss) n f | n == 1 = capitalizado (maiMinCompletas (s:ss) 'm') (2) f
+                        | n == 2 = capitalizado (ss) (0) (f++[(maiuscula s)])
+                        | s == ' ' = capitalizado (ss) (2) (f++[s])
+                        | otherwise = capitalizado (ss) (0) (f++[s])
+titulo::[Char] -> [Char]
+titulo s = capitalizado s 1 ""
