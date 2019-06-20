@@ -53,10 +53,9 @@ replace s w t j = (take j s) ++ myReplace (drop j s) (w) (t) ("")
 main = do  
     args <- getArgs  
     progName <- getProgName  
-    putStrLn "Os argumentos são:"  
-    mapM putStrLn args
-    putStrLn "O nome do programa é:"  
-    putStrLn progName
+    conteudo <- readFile (args !! 0)
+    writeFile (args !! 3) (replace (conteudo) (args !! 1) (args !! 2) (0))
+    -- withFile (args !! 4) conteudo
     -- (1.5)
 
     -- Lê arqivo via linha de comando

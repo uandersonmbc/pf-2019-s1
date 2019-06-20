@@ -1,9 +1,6 @@
-import System.Environment
-
-func :: [[Char]] -> [([Char]), Int]
-func (x:xs) = []
-
-main = do
-   args <- getArgs
-   contest <- readFile (args !! 0)
-   let w = words contest
+import System.IO  
+  
+main = do  
+    withFile "girlfriend.txt" ReadMode (\handle -> do  
+        contents <- hGetContents handle  
+        putStr contents)
