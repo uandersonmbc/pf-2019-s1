@@ -50,10 +50,13 @@ myReplace (s:ss) w t f = if ( (teste (s:ss) 0 (length w)) == w) then myReplace (
 replace :: String -> String -> String -> Int -> String 
 replace s w t j = (take j s) ++ myReplace (drop j s) (w) (t) ("")
 
--- main = do
---     args <- getArgs
---     name <- getProgName
-
+main = do  
+    args <- getArgs  
+    progName <- getProgName  
+    putStrLn "Os argumentos são:"  
+    mapM putStrLn args
+    putStrLn "O nome do programa é:"  
+    putStrLn progName
     -- (1.5)
 
     -- Lê arqivo via linha de comando
