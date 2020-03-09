@@ -100,6 +100,17 @@ unique (y : ys) = if y `elem` ys
 
 -- 16 menores
 
+menores::Int -> [Int] -> [Int]
+-- 3 [5,3,1,9,7,2] ==> [3,1,2]
+-- 6 - 3 => 3
+-- 5 => 2
+-- 3 => 3 <-
+-- 1 => 5 <-
+-- 9 => 0
+-- 7 => 1
+-- 2 => 4 <-
+menores n u = [x | x <- u, (length (maioresQue x u)) >= ((length u) - n)]
+
 -- 17 alter
 alter::Int -> [Int]
 alter 0 = [0]
@@ -245,6 +256,6 @@ base 0 _ = ""
 base n b = if (b == 2) then (base (div n b) (b)) ++ show (mod n b) else (base (div n b) (b))++(("0123456789ABCDEF" !! (mod n b)):"")
 
 -- 40 partes
-subconjuntos::[Int] -> Int -> [[Int]]
-partes::[Int] -> [[Int]]
-partes us = subconjuntos us []
+-- subconjuntos::[Int] -> Int -> [[Int]]
+-- partes::[Int] -> [[Int]]
+-- partes us = subconjuntos us []
